@@ -14,14 +14,15 @@ export default function ProjectForm({ onAddProject }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!formData.title || !formData.description) return;
+    if (!formData.title.trim() || !formData.description.trim()) return;
     
     onAddProject({
-      title: formData.title,
-      description: formData.description,
-      imageUrl: formData.imageUrl || 'https://via.placeholder.com/400x250?text=New+Project'
+      title: formData.title.trim(),
+      description: formData.description.trim(),
+      imageUrl: formData.imageUrl.trim() || 'https://via.placeholder.com/400x250?text=New+Project'
     });
     
+    // Reset form after successful submission
     setFormData({ title: '', description: '', imageUrl: '' });
   };
 
